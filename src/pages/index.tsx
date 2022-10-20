@@ -1,4 +1,3 @@
-import { ogImage } from "@/assets"
 import {
   Feature,
   Guide,
@@ -7,12 +6,12 @@ import {
   NewsSlide,
   PlaceSlide,
   PromotionBanner,
-  Seo,
 } from "@/components"
 import { useNews } from "@/hooks"
 import { GuestLayout } from "@/layout"
 import { CompoundingCarRes } from "@/models"
 import { rideAPI } from "@/services"
+import { NextSeo } from "next-seo"
 import { useRouter } from "next/router"
 import { useLayoutEffect } from "react"
 import { useSelector } from "react-redux"
@@ -48,12 +47,18 @@ const HomeGuest = () => {
 
   return (
     <section>
-      <Seo
+      <NextSeo
+        defaultTitle="Ứng dụng đặt xe ExxeVn"
+        title="Ứng dụng đặt xe ExxeVn"
+        description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
+      />
+
+      {/* <Seo
         description="Ứng dụng gọi xe đường dài số 1 Việt Nam"
         thumbnailUrl={ogImage}
         title="Ứng dụng đặt xe ExxeVn"
         url=""
-      />
+      /> */}
 
       <div className="h-[244px] sm:h-[350px] md:h-[453px] lg:h-[600px] xl:h-[calc(100vh-80px)]">
         <HeroSection />

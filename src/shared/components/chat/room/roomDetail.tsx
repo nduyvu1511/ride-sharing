@@ -53,24 +53,12 @@ export const RoomDetail = forwardRef(function RoomChild(
   } = useMessage({ roomId, initialData: data?.messages })
 
   useImperativeHandle(ref, () => ({
-    appendMessage: (mes) => {
-      appendMessage(mes)
-    },
-    changeStatusOfRoom: (params) => {
-      changeStatusOfRoom(params)
-    },
-    changeMesageStatus: (params) => {
-      confirmReadMessage(params)
-    },
-    mutateWithMessageRes: (params) => {
-      mutateByMessageRes(params)
-    },
-    mutatePartnerReactionMessage: (params) => {
-      mutatePartnerReactionMessage(params)
-    },
-    confirmReadAllMessage: () => {
-      confirmReadAllMessage()
-    },
+    appendMessage: appendMessage,
+    changeStatusOfRoom: changeStatusOfRoom,
+    changeMesageStatus: confirmReadMessage,
+    mutateWithMessageRes: mutateByMessageRes,
+    mutatePartnerReactionMessage: mutatePartnerReactionMessage,
+    confirmReadAllMessage: confirmReadAllMessage,
   }))
 
   const handleSendMessage = (params: SendMessageData) => {
@@ -85,15 +73,11 @@ export const RoomDetail = forwardRef(function RoomChild(
   }
 
   const handleReactionMessage = (params: LikeMessage) => {
-    likeMessage(params, (data) => {
-      socket?.emit("like_message", data)
-    })
+    likeMessage(params)
   }
 
   const handleUndoMesasgeReaction = (params: UnlikeMessage) => {
-    unlikeMessage(params, (data) => {
-      socket?.emit("unlike_message", data)
-    })
+    unlikeMessage(params)
   }
 
   const handleReadMessage = ({

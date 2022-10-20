@@ -21,6 +21,7 @@ export interface IRoom {
 
 export interface RoomRes {
   room_id: string
+  compounding_car_id: number
   room_name: string | null
   room_avatar?: string | null
   room_type: RoomType
@@ -42,10 +43,10 @@ export type RoomDetailRes = Omit<
 > & {
   room_avatar: AttachmentRes | null
   offline_at: Date | null
-  messages_pinned: ListRes<MessageRes[]>
+  // messages_pinned: ListRes<MessageRes[]>
   messages: ListRes<MessageRes[]>
   members: ListRes<RoomMemberRes[]>
-  leader_user_info: RoomMemberRes | null
+  // leader_user_info: RoomMemberRes | null
 }
 
 export type RoomType = "group" | "single" | "admin"
@@ -133,6 +134,9 @@ export interface RoomFunctionHandler {
   appendLastMessage: (_: MessageRes) => void
   changeOrderAndAppendLastMessage: (_: MessageRes) => void
   clearMessagesUnreadFromRoom: (id: string) => void
+  addRoom: (room: RoomDetailRes) => void
+  deleteRoomByCompoundingCarId: (c_id: number) => void
+  deleteRoom: (c_id: string) => void
 }
 
 export interface RoomDetailFunctionHandler {

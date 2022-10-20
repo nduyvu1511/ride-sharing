@@ -61,8 +61,8 @@ const ConfirmBookingCustomer = () => {
       params,
       onSuccess: () => {
         handleSetShowCancelModal(false)
-        chatAPI.destroyRoom(params.compounding_car_id)
         router.push(`/d/ride-detail/cancel/${params.compounding_car_id}`)
+        chatAPI.softDeleteRoomByCompoundingCarId(params.compounding_car_id)
       },
     })
   }
