@@ -1,3 +1,4 @@
+import { ogImage } from "@/assets"
 import {
   Feature,
   Guide,
@@ -6,6 +7,7 @@ import {
   NewsSlide,
   PlaceSlide,
   PromotionBanner,
+  Seo,
 } from "@/components"
 import { useNews } from "@/hooks"
 import { GuestLayout } from "@/layout"
@@ -47,18 +49,18 @@ const HomeGuest = () => {
 
   return (
     <section>
-      <NextSeo
+      {/* <NextSeo
         defaultTitle="Ứng dụng đặt xe ExxeVn"
         title="Ứng dụng đặt xe ExxeVn"
         description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
-      />
+      /> */}
 
-      {/* <Seo
-        description="Ứng dụng gọi xe đường dài số 1 Việt Nam"
+      <Seo
+        description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
         thumbnailUrl={ogImage}
         title="Ứng dụng đặt xe ExxeVn"
-        url=""
-      /> */}
+        url="https://ride-sharing-inky.vercel.app/"
+      />
 
       <div className="h-[244px] sm:h-[350px] md:h-[453px] lg:h-[600px] xl:h-[calc(100vh-80px)]">
         <HeroSection />
