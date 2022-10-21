@@ -21,7 +21,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         {openGraphData.map((og: any, index: number) => (
           <meta key={index} {...og} />
         ))}
-        <NextSeo openGraph={openGraphData} />
+        <NextSeo
+          defaultTitle="Ứng dụng đặt xe ExxeVn"
+          description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
+          openGraph={openGraphData}
+        />
       </Head>
 
       <Provider store={store}>
