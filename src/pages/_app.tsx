@@ -16,10 +16,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         {openGraphData.map((og: any, index: number) => (
           <meta key={index} {...og} />
         ))}
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </Head>
 
       <Provider store={store}>

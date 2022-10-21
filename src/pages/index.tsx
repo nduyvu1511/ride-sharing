@@ -9,9 +9,10 @@ import {
   PromotionBanner,
   Seo,
 } from "@/components"
+import { DOMAIN_URL } from "@/helper"
 import { useNews } from "@/hooks"
 import { GuestLayout } from "@/layout"
-import { CompoundingCarRes } from "@/models"
+import { CompoundingCarRes, OpenGraphData } from "@/models"
 import { rideAPI } from "@/services"
 import { useRouter } from "next/router"
 import { useLayoutEffect } from "react"
@@ -114,7 +115,7 @@ export const getStaticProps = async () => {
         },
         {
           property: "og:url",
-          content: `https://ride-sharing-inky.vercel.app/`,
+          content: DOMAIN_URL,
           key: "ogurl",
         },
         {
@@ -129,7 +130,8 @@ export const getStaticProps = async () => {
         },
         {
           property: "og:description",
-          content: "Ima description",
+          content:
+            "Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành.",
           key: "ogdesc",
         },
         {
@@ -137,7 +139,7 @@ export const getStaticProps = async () => {
           content: "website",
           key: "website",
         },
-      ],
+      ] as OpenGraphData[],
     },
   }
 }
