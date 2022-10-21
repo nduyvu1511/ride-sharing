@@ -34,6 +34,11 @@ export const getStaticProps = async () => {
           key: "ogimage",
         },
         {
+          property: "og:image:alt",
+          content: ogImage,
+          key: "ogimagealt",
+        },
+        {
           property: "og:image:width",
           content: "400",
           key: "ogimagewidth",

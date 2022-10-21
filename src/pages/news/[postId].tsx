@@ -1,6 +1,5 @@
 import { ogImage } from "@/assets"
 import { NewsSlide, Seo, Spinner } from "@/components"
-import { DOMAIN_URL } from "@/helper"
 import { StaticLayout } from "@/layout"
 import { OpenGraphData, PostDetailRes, PostRes } from "@/models"
 import { newsAPI } from "@/services"
@@ -110,7 +109,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
         {
           property: "og:image:alt",
           content: data?.data?.thumbnail || ogImage,
-          key: "ogimage",
+          key: "ogimagealt",
         },
         {
           property: "og:image:width",
