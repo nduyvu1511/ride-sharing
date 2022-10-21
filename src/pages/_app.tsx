@@ -26,6 +26,22 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             url="https://ride-sharing-inky.vercel.app/"
           />
           <Head>
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={`https://ride-sharing-inky.vercel.app`} />
+            <meta
+              property="og:image"
+              content={
+                "https://cdn.getshifter.co/caa65008efb706a8bfc6f7e4045d6a018420c3df/uploads/2020/11/nextjs.png"
+              }
+            />
+            <meta property="twitter:card" content="summary_large_image" />
+            <meta property="twitter:url" content={`https://ride-sharing-inky.vercel.app`} />
+            <meta
+              property="twitter:image"
+              content={
+                "https://cdn.getshifter.co/caa65008efb706a8bfc6f7e4045d6a018420c3df/uploads/2020/11/nextjs.png"
+              }
+            />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
             {/* <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> */}
           </Head>
