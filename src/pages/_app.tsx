@@ -17,20 +17,20 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <Head>
-        <NextSeo openGraph={openGraphData} />
+        {/* <NextSeo openGraph={openGraphData} />
         {openGraphData.map((og: any, index: number) => (
           <meta key={index} {...og} />
-        ))}
-        {/* <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> */}
+        ))} */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </Head>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <SWRConfig value={{ revalidateOnFocus: false, shouldRetryOnError: false }}>
             <App>
               <Layout>
-                {/* <NotificationsProvider> */}
-                <Component {...pageProps} />
-                {/* </NotificationsProvider> */}
+                <NotificationsProvider>
+                  <Component {...pageProps} />
+                </NotificationsProvider>
               </Layout>
             </App>
           </SWRConfig>
