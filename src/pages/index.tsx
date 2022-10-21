@@ -55,14 +55,14 @@ const HomeGuest = () => {
         description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
       /> */}
 
-      <Seo
+      {/* <Seo
         description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
         thumbnailUrl={
           "https://cdn.getshifter.co/caa65008efb706a8bfc6f7e4045d6a018420c3df/uploads/2020/11/nextjs.png"
         }
         title="Ứng dụng đặt xe ExxeVn"
         url="https://ride-sharing-inky.vercel.app/"
-      />
+      /> */}
 
       <div className="h-[244px] sm:h-[350px] md:h-[453px] lg:h-[600px] xl:h-[calc(100vh-80px)]">
         <HeroSection />
@@ -108,3 +108,52 @@ const HomeGuest = () => {
 
 HomeGuest.Layout = GuestLayout
 export default HomeGuest
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      openGraphData: [
+        {
+          property: "og:image",
+          content: ogImage,
+          key: "ogimage",
+        },
+        {
+          property: "og:image:width",
+          content: "400",
+          key: "ogimagewidth",
+        },
+        {
+          property: "og:image:height",
+          content: "300",
+          key: "ogimageheight",
+        },
+        {
+          property: "og:url",
+          content: `https://ride-sharing-inky.vercel.app/`,
+          key: "ogurl",
+        },
+        {
+          property: "og:image:secure_url",
+          content: ogImage,
+          key: "ogimagesecureurl",
+        },
+        {
+          property: "og:title",
+          content: "Ứng dụng đặt xe ExxeVn",
+          key: "ogtitle",
+        },
+        {
+          property: "og:description",
+          content: "Ima description",
+          key: "ogdesc",
+        },
+        {
+          property: "og:type",
+          content: "website",
+          key: "website",
+        },
+      ],
+    },
+  }
+}
