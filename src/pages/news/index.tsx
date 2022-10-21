@@ -55,13 +55,12 @@ export const getStaticProps = async () => {
         },
         {
           property: "og:title",
-          content: "Ứng dụng đặt xe ExxeVn",
+          content: "Tin tức ExxeVn",
           key: "ogtitle",
         },
         {
           property: "og:description",
-          content:
-            "Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành.",
+          content: "Đăng ký để không bỏ lỡ những tin tức mới nhất từ ExxeVn",
           key: "ogdesc",
         },
         {

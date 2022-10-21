@@ -49,6 +49,11 @@ const HomeGuest = () => {
 
   return (
     <section>
+      <Seo
+        url=""
+        title="Ứng dụng đặt xe ExxeVn"
+        description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
+      />
       <div className="h-[244px] sm:h-[350px] md:h-[453px] lg:h-[600px] xl:h-[calc(100vh-80px)]">
         <HeroSection />
       </div>
@@ -100,6 +105,11 @@ export const getStaticProps = async () => {
       openGraphData: [
         {
           property: "og:image",
+          content: ogImage,
+          key: "ogimage",
+        },
+        {
+          property: "og:image:alt",
           content: ogImage,
           key: "ogimage",
         },

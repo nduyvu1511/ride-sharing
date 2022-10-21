@@ -1,11 +1,20 @@
-import { NewsSlide, Seo } from "@/components"
+import { ogImage } from "@/assets"
+import { NewsSlide, Seo, Spinner } from "@/components"
 import { StaticLayout } from "@/layout"
-import { PostDetailRes, PostRes } from "@/models"
+import { OpenGraphData, PostDetailRes, PostRes } from "@/models"
 import { newsAPI } from "@/services"
+import { AxiosResponse } from "axios"
+import { GetStaticPropsContext } from "next"
 import { useRouter } from "next/router"
 import useSWR from "swr"
 
-const PostDetail = () => {
+interface PostDetailProps {
+  fallback: {
+    "/post/detail": PostDetailRes
+  }
+}
+
+const PostDetail = (props: PostDetailProps) => {
   const router = useRouter()
   const { postId } = router.query
   const { isValidating, data } = useSWR<PostDetailRes>(
@@ -15,8 +24,9 @@ const PostDetail = () => {
         .getPostDetail(postId + "")
         .then((res: any) => res.data)
         .catch((err) => console.log(err)),
-    { dedupingInterval: 1000 }
+    { dedupingInterval: 1000, fallback: props.fallback }
   )
+
   const { data: newsRelated, isValidating: isRelatedLoading } = useSWR<PostRes[]>(
     data?.category?.categoryId ? `get_related_post_${postId}` : null,
     () =>
@@ -26,6 +36,13 @@ const PostDetail = () => {
         .catch((err) => console.log(err)),
     { dedupingInterval: 1000000 }
   )
+
+  if (router.isFallback)
+    return (
+      <div className="py-40">
+        <Spinner />
+      </div>
+    )
 
   return (
     <StaticLayout
@@ -61,3 +78,76 @@ const PostDetail = () => {
 }
 
 export default PostDetail
+
+export async function getStaticPaths() {
+  const data: any = await newsAPI
+    .getPosts({ limit: 1000 })
+    .then((res) => res.data)
+    .catch((err) => console.log(err))
+
+  return {
+    paths: data?.map((item: PostRes) => ({ params: { postId: item?.postId } })),
+    fallback: true,
+  }
+}
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+  const { params: { postId = "" } = { params: undefined } } = context
+  const data: AxiosResponse<PostDetailRes> = await newsAPI.getPostDetail(postId as string)
+
+  return {
+    props: {
+      fallback: {
+        "/post/detail": data?.data,
+      },
+
+      openGraphData: [
+        {
+          property: "og:image",
+          content: data?.data?.thumbnail || ogImage,
+          key: "ogimage",
+        },
+        {
+          property: "og:image:alt",
+          content: data?.data?.thumbnail || ogImage,
+          key: "ogimage",
+        },
+        {
+          property: "og:image:width",
+          content: "400",
+          key: "ogimagewidth",
+        },
+        {
+          property: "og:image:height",
+          content: "300",
+          key: "ogimageheight",
+        },
+        {
+          property: "og:url",
+          content: `DOMAIN_URL/news/${postId}`,
+          key: "ogurl",
+        },
+        {
+          property: "og:image:secure_url",
+          content: data?.data?.thumbnail || ogImage,
+          key: "ogimagesecureurl",
+        },
+        {
+          property: "og:title",
+          content: data?.data.title,
+          key: "ogtitle",
+        },
+        {
+          property: "og:description",
+          content: data?.data.title,
+          key: "ogdesc",
+        },
+        {
+          property: "og:type",
+          content: "website",
+          key: "website",
+        },
+      ] as OpenGraphData[],
+    },
+  }
+}
