@@ -15,26 +15,28 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const { openGraphData = [] } = pageProps
 
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <SWRConfig value={{ revalidateOnFocus: false, shouldRetryOnError: false }}>
-          <Head>
-            <NextSeo openGraph={openGraphData} />
-            {openGraphData.map((og: any, index: number) => (
-              <meta key={index} {...og} />
-            ))}
-            {/* <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> */}
-          </Head>
-          <App>
-            <Layout>
-              {/* <NotificationsProvider> */}
-              <Component {...pageProps} />
-              {/* </NotificationsProvider> */}
-            </Layout>
-          </App>
-        </SWRConfig>
-      </PersistGate>
-    </Provider>
+    <>
+      <Head>
+        <NextSeo openGraph={openGraphData} />
+        {openGraphData.map((og: any, index: number) => (
+          <meta key={index} {...og} />
+        ))}
+        {/* <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> */}
+      </Head>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <SWRConfig value={{ revalidateOnFocus: false, shouldRetryOnError: false }}>
+            <App>
+              <Layout>
+                {/* <NotificationsProvider> */}
+                <Component {...pageProps} />
+                {/* </NotificationsProvider> */}
+              </Layout>
+            </App>
+          </SWRConfig>
+        </PersistGate>
+      </Provider>
+    </>
   )
 }
 
