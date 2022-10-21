@@ -1,5 +1,6 @@
 import { ogImage } from "@/assets"
 import { NewsSlide, Seo, Spinner } from "@/components"
+import { DOMAIN_URL } from "@/helper"
 import { StaticLayout } from "@/layout"
 import { OpenGraphData, PostDetailRes, PostRes } from "@/models"
 import { newsAPI } from "@/services"
@@ -65,9 +66,8 @@ const PostDetail = (props: PostDetailProps) => {
     >
       <Seo
         description={data?.shortContent || data?.title || ""}
-        thumbnailUrl=""
         title={data?.title || "Tin tức"}
-        url={`https://exxe.vn/news/${data?.postId}`}
+        url={`${data?.postId}`}
       />
 
       {data ? (
