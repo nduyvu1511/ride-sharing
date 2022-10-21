@@ -2,6 +2,7 @@ import store from "@/core/store"
 import { App, EmptyLayout } from "@/layout"
 import { AppPropsWithLayout } from "@/models"
 import { persistor } from "core"
+import { NextSeo } from "next-seo"
 import Head from "next/head"
 import { Provider } from "react-redux"
 import { NotificationsProvider } from "reapop"
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <PersistGate loading={null} persistor={persistor}>
         <SWRConfig value={{ revalidateOnFocus: false, shouldRetryOnError: false }}>
           <Head>
+            <NextSeo openGraph={openGraphData} />
             {openGraphData.map((og: any, index: number) => (
               <meta key={index} {...og} />
             ))}
@@ -25,9 +27,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           </Head>
           <App>
             <Layout>
-              <NotificationsProvider>
-                <Component {...pageProps} />
-              </NotificationsProvider>
+              {/* <NotificationsProvider> */}
+              <Component {...pageProps} />
+              {/* </NotificationsProvider> */}
             </Layout>
           </App>
         </SWRConfig>
