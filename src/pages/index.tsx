@@ -57,7 +57,9 @@ const HomeGuest = () => {
 
       <Seo
         description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
-        thumbnailUrl={ogImage}
+        thumbnailUrl={
+          "https://cdn.getshifter.co/caa65008efb706a8bfc6f7e4045d6a018420c3df/uploads/2020/11/nextjs.png"
+        }
         title="Ứng dụng đặt xe ExxeVn"
         url="https://ride-sharing-inky.vercel.app/"
       />
