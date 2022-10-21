@@ -8,6 +8,7 @@ import { NotificationsProvider } from "reapop"
 import { PersistGate } from "redux-persist/integration/react"
 import { SWRConfig } from "swr"
 import "../styles/index.scss"
+import { NextSeo } from "next-seo"
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         {openGraphData.map((og: any, index: number) => (
           <meta key={index} {...og} />
         ))}
+        <NextSeo openGraph={openGraphData} />
       </Head>
 
       <Provider store={store}>
