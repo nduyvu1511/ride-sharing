@@ -8,7 +8,6 @@ import { NotificationsProvider } from "reapop"
 import { PersistGate } from "redux-persist/integration/react"
 import { SWRConfig } from "swr"
 import "../styles/index.scss"
-import { NextSeo } from "next-seo"
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout
@@ -21,11 +20,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         {openGraphData.map((og: any, index: number) => (
           <meta key={index} {...og} />
         ))}
-        <NextSeo
+        {/* <NextSeo
           defaultTitle="Ứng dụng đặt xe ExxeVn"
           description="Ứng dụng ExxeVn là ứng dụng thương mại điện tử trên thiết bị di động do Công ty Cổ phần Đầu Tư Công Nghệ và Vận Tải ExxeVn thiết lập, quản lý vận tải cho các tổ chức, cá nhân khác hoạt động phù hợp với quy định của pháp luật hiện hành."
           openGraph={openGraphData}
-        />
+        /> */}
       </Head>
 
       <Provider store={store}>
