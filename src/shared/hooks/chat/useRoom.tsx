@@ -82,9 +82,9 @@ export const useRoom = (roomId?: string): UseRoomRes => {
       room_name: params.room_name,
       room_type: params.room_type,
       last_message: null,
-      room_avatar: params?.room_avatar?.thumbnail_url,
+      room_avatar: params?.room_avatar,
       top_members: params?.members?.data?.map((item) => ({
-        user_avatar: item.avatar.thumbnail_url,
+        user_avatar: item.avatar,
         user_name: item.user_name,
         user_id: item.user_id,
         is_online: item.is_online,
@@ -157,21 +157,6 @@ export const useRoom = (roomId?: string): UseRoomRes => {
     }
     return index
   }
-
-  // const increaseMessageUnread = async (
-  //   params: MessageRes,
-  //   cb?: (_: number) => void,
-  //   onErr?: Function
-  // ) => {
-  //   try {
-  //     const res: any = await chatAPI.addMessageUnreadToRoom({ message_id: params.message_id })
-  //     if (res?.success) {
-  //       cb?.(res?.data?.message_unread_count || 0)
-  //     } else {
-  //       onErr?.()
-  //     }
-  //   } catch (error) {}
-  // }
 
   const clearMessagesUnreadFromRoom = async (roomId: string) => {
     if (!data?.data?.length) return

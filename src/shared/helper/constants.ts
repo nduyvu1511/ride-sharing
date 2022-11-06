@@ -8,6 +8,7 @@ export const PASSWORD_SCHEMA = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d
 export const DATE_SCHEMA = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/
 export const BASE64_REGEX = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/
 export const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+export const OBJECT_ID_REGEX = /^[0-9a-fA-F]{24}$/
 export const VIETNAMESE_NAME =
   /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/
 export const YEAR_SCHEMA = /^(19|20)\d{2}$/
@@ -86,12 +87,16 @@ export const PAYMENT_PURPOSE_NAME = {
   car_driver_wallet_recharge: "Nạp tiền",
   passenger_wallet_recharge: "Nạp tiền",
   passenger_withdrawing: "Rút tiền",
+  customer_invoice: "Hóa đơn kết chuyến",
+  cancel_car_driver_deposit: "Hủy cọc",
+  cancel_passenger_deposit: "Hủy cọc",
+  exxe_reward: "Thưởng Exxe",
 }
 
 export const PHONE = "0847878788"
 export const ADDRESS = "Số 10 S5, Villa Saroma, Phường An Lợi Đông, Quận 2, TPHCM"
 export const EMAIL = "exxevn2022@gmail.com"
-export const DOMAIN_URL = process?.env?.NEXT_PUBLIC_DOMAIN_URL || "https://exxe.vn"
+export const DOMAIN_URL = process?.env?.NEXT_PUBLIC_DOMAIN_URL
 
 export const PAYMENT_METHOD_NAME = {
   cash: "Tiền mặt",

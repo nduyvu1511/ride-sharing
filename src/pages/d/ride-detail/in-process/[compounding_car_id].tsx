@@ -277,7 +277,11 @@ const StartRunningCompoundingCar = () => {
                         <RidePassengerItem
                           onChat={(partner_id) =>
                             createSingleChat({
-                              params: { partner_id, compounding_car_id: item.compounding_car_id },
+                              params: {
+                                partner_id,
+                                compounding_car_id: item.compounding_car_id,
+                                state: item.state,
+                              },
                               onSuccess: () => {},
                             })
                           }

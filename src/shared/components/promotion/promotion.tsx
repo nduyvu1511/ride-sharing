@@ -1,5 +1,4 @@
 import { FilterNotFound, Modal, PromotionDetail, PromotionItem, Spinner } from "@/components"
-import { RootState } from "@/core"
 import { toggleBodyOverflow } from "@/helper"
 import { usePromotionActions, useQueryList } from "@/hooks"
 import { PromotionRes } from "@/models"
@@ -8,7 +7,6 @@ import { AxiosPromise } from "axios"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
-import { useSelector } from "react-redux"
 
 interface PromotionProps {
   className?: string
@@ -19,7 +17,6 @@ type PromotionValue = "all" | "saved" | "new"
 
 export const Promotion = ({ className }: PromotionProps) => {
   const router = useRouter()
-  const userInfo = useSelector((state: RootState) => state.userInfo.userInfo)
   const { data, fetchMoreItem, hasMore, isFetchingMore, isValidating, filterList, mutate } =
     useQueryList<PromotionRes[]>({
       fetcher: promotionApi.getPromotionList,
@@ -111,14 +108,12 @@ export const Promotion = ({ className }: PromotionProps) => {
               {data?.map((item) => (
                 <PromotionItem
                   onSave={handleSavePromotion}
+                  onApply={() => router.push("/")}
+                  key={item.promotion_id}
+                  data={item}
                   onClick={(id) => {
                     toggleModal(id)
                   }}
-                  onApply={() =>
-                    router.push(userInfo?.car_account_type === "car_driver" ? "/d" : "/c")
-                  }
-                  key={item.promotion_id}
-                  data={item}
                 />
               ))}
             </div>

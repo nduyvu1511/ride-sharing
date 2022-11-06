@@ -31,7 +31,6 @@ interface CheckoutProps {
   promotion?: ReactNode
   checkoutData: IDepositSummaryOptional
   data: CompoundingCarDriverRes | CompoundingCarCustomer
-  onConfirmCompoundingCar?: (val: CompoundingCarCustomer) => void
 }
 
 type ModalType = "confirm" | "cancel" | "alert" | "confirmWallet" | undefined
@@ -47,7 +46,6 @@ const Checkout = ({
   promotion,
   data,
   checkoutData,
-  onConfirmCompoundingCar,
 }: CheckoutProps) => {
   const router = useRouter()
   const {
@@ -77,8 +75,7 @@ const Checkout = ({
         params: {
           compounding_car_customer_id: (data as CompoundingCarCustomer).compounding_car_customer_id,
         },
-        onSuccess: (data) => {
-          onConfirmCompoundingCar?.(data)
+        onSuccess: () => {
           onCheckout?.(currentSelectPayment)
           toggleModal(undefined)
         },
@@ -155,9 +152,8 @@ const Checkout = ({
 
                   if (currentSelectPayment.provider === "exxe_wallet") {
                     if (
-                      currentSelectPayment?.money_in_cash_wallet === 0 ||
                       (currentSelectPayment?.money_in_cash_wallet || 0) <
-                        (data?.down_payment?.total || 0)
+                      (data?.down_payment?.total || 0)
                     ) {
                       toggleModal("alert")
                       return
@@ -184,11 +180,9 @@ const Checkout = ({
         <Alert
           show={true}
           title="Giao dịch này đã quá hạn thanh toán, vui lòng đặt chuyến mới"
-          onConfirm={() =>
-            router.push(`${userInfo?.car_account_type === "car_driver" ? "/d" : "/c"}`)
-          }
           type="error"
           showLeftBtn={false}
+          onConfirm={() => router.push("/")}
         />
       ) : null}
 

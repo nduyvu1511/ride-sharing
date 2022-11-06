@@ -1,11 +1,12 @@
-import { AttachmentId, AttachmentRes, ListRes, QueryCommonParams } from "./common"
+import { AttachmentId, ListRes, QueryCommonParams } from "./common"
+import { CompoundingCarCustomerState } from "./compoundingCar"
 import { MessageRes } from "./message"
 import { FriendStatusRes, IUser } from "./user"
 
 export interface IRoom {
   _id: string
   room_name: string
-  room_avatar_id: string
+  room_avatar: string
   room_type: RoomType
   member_ids: RoomMember[]
   leader_id: string
@@ -41,7 +42,7 @@ export type RoomDetailRes = Omit<
   RoomRes,
   "message_unread_count" | "last_message" | "room_avatar"
 > & {
-  room_avatar: AttachmentRes | null
+  room_avatar: string | null
   offline_at: Date | null
   // messages_pinned: ListRes<MessageRes[]>
   messages: ListRes<MessageRes[]>
@@ -76,6 +77,7 @@ export type LastMessage = Pick<
 export interface CreateSingleChat {
   partner_id: number | string
   compounding_car_id: number
+  state: CompoundingCarCustomerState
 }
 
 export interface CreateGroupChat {
@@ -119,7 +121,7 @@ export type RoomMemberRes = Pick<
   "bio" | "gender" | "date_of_birth" | "is_online" | "user_name" | "phone"
 > & {
   user_id: string
-  avatar: AttachmentRes
+  avatar: string
 }
 
 export interface ClearUnreadMessage {
@@ -166,7 +168,7 @@ export interface RoomTypingRes {
   room_id: string
 }
 
-export type UpdateRoomInfoForm = Partial<Pick<IRoom, "room_name" | "room_avatar_id">>
+export type UpdateRoomInfoForm = Partial<Pick<IRoom, "room_name" | "room_avatar">>
 
 export type UpdateRoomInfo = UpdateRoomInfoForm & {
   room_id: string
@@ -175,7 +177,7 @@ export type UpdateRoomInfo = UpdateRoomInfoForm & {
 export interface RoomInfoRes {
   room_id: string
   room_name: string | null
-  room_avatar?: AttachmentRes | null
+  room_avatar?: string | null
   room_type: RoomType
   member_count: number
 }

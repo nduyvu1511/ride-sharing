@@ -50,7 +50,7 @@ export const getStaticProps = async () => {
         },
         {
           property: "og:url",
-          content: DOMAIN_URL,
+          content: DOMAIN_URL + "/news",
           key: "ogurl",
         },
         {

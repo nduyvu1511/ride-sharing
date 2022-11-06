@@ -4,11 +4,11 @@ import { Slide } from "../common"
 import { PlaceItem } from "./placeItem"
 
 interface PlaceSlideProps {
-  places: CompoundingCarRes[]
+  data: CompoundingCarRes[]
   showLoading?: boolean
 }
 
-export const PlaceSlide = ({ places, showLoading = false }: PlaceSlideProps) => {
+export const PlaceSlide = ({ data, showLoading }: PlaceSlideProps) => {
   if (showLoading)
     return (
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 md:gap-16 pr-12 md:pr-16">
@@ -18,10 +18,12 @@ export const PlaceSlide = ({ places, showLoading = false }: PlaceSlideProps) => 
         <div className="rounded-[5px] skeleton aspect-1 hidden md:block"></div>
       </div>
     )
+
   return (
     <Slide>
-      {places?.length > 0 &&
-        places.map((item, index) => (
+      {data &&
+        data?.length > 0 &&
+        data?.map((item, index) => (
           <SwiperSlide key={index}>
             <PlaceItem
               placeItem={{

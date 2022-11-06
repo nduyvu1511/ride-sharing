@@ -77,10 +77,12 @@ export const Chat = memo(function _Chat() {
     })
 
     socket.on("react_message", (payload: MessageRes) => {
+      console.log("react message: ", payload)
       roomDetailRef.current?.mutatePartnerReactionMessage(payload)
     })
 
     socket.on("unreact_message", (payload: MessageRes) => {
+      console.log("un react message: ", payload)
       roomDetailRef.current?.mutatePartnerReactionMessage(payload)
     })
 
@@ -96,14 +98,15 @@ export const Chat = memo(function _Chat() {
 
     socket.on("delete_room_by_compounding_car", (compounding_car_id: number) => {
       roomRef.current?.deleteRoomByCompoundingCarId(compounding_car_id)
+      console.log("new room deleted by compounding car: ", compounding_car_id)
     })
 
     socket.on("member_join_room", (params: any) => {
-      console.log("new member join room: ", params)
+      // console.log("new member join room: ", params)
     })
 
     socket.on("member_leave_room", (params: any) => {
-      console.log("new member join room: ", params)
+      // console.log("new member join room: ", params)
     })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
